@@ -1,3 +1,4 @@
+using Dominio.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleGastosApp.Controllers
@@ -7,21 +8,23 @@ namespace ControleGastosApp.Controllers
     public class ClientesController : ControllerBase
     {
         private readonly ILogger<ClientesController> _logger;
+        private readonly IClientesService _clientesService;
 
-        public ClientesController(ILogger<ClientesController> logger)
+        public ClientesController(ILogger<ClientesController> logger, IClientesService clientesService)
         {
             _logger = logger;
+            _clientesService = clientesService;
         }
 
         [HttpGet]
-        public ActionResult GetSaldo([FromQuery] int id)
+        public ActionResult GetSaldo([FromQuery] int clientId)
         {
-
+            
             return Ok();
         }
 
         [HttpGet]
-        public ActionResult GetLancamentos(int id)
+        public ActionResult GetLancamentos([FromQuery]int cli)
         {
 
             return Ok();

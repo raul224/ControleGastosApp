@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dominio.Dto
+﻿namespace Dominio.Dto
 {
     public class Lancamentos
     {
-
+        public DateTime dataLancamento { get; set; }
+        public string descricaoLancamento { get; set; }
+        public double valor { get; set; }
     }
 }
