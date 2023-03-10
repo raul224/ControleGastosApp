@@ -10,4 +10,16 @@
     <Folder Include="Entidades\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Dto\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Dto\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Dto\**" />
+  </ItemGroup>
+
 </Project>

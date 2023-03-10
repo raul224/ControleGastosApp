@@ -17,16 +17,16 @@ namespace ControleGastosApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetSaldo([FromQuery] int clientId)
+        public IActionResult GetSaldo([FromQuery] int clientId)
         {
             
             return Ok();
         }
 
         [HttpGet]
-        public ActionResult GetLancamentos([FromQuery]int cli)
+        public IActionResult GetLancamentos([FromQuery]int clientId)
         {
-
+            
             return Ok();
         }
     }
