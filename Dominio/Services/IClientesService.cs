@@ -5,5 +5,5 @@ namespace Dominio.Services;
 public interface IClientesService
 {
     List<Lancamento> GetLancamentos(int id);
-    Cliente GetSaldo(int clientId);
+    Cliente GetCliente(int clientId);
 }

@@ -5,5 +5,6 @@
         public int clientId { get; set; }
         public double saldo { get; set; }
         public DateTime DataConsulta { get; set; }
+        public List<Lancamento> lancamentos { get; set; }
     }
 }

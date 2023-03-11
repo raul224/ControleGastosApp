@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Dominio.Entidades;
+using Dominio.IRepositorios;
 
 namespace Dominio.Services
 {
     public class ClientesService : IClientesService
     {
-        private readonly IClientesService _clientesService;
+        private readonly IClientesRepositorio _clientesRepositorio;
 
-        public ClientesService(IClientesService clientesService)
+        public ClientesService(IClientesRepositorio clientesRepositorio)
         {
-            _clientesService = clientesService;
+            _clientesRepositorio = clientesRepositorio;
         }
         public List<Lancamento> GetLancamentos(int id)
         {
-            throw new NotImplementedException();
+            return _clientesRepositorio.GetLancamentos(id).ToList();
         }
 
-        public Cliente GetSaldo(int clientId)
+        public Cliente GetCliente(int clientId)
         {
-            throw new NotImplementedException();
+            return _clientesRepositorio.GetCliente(clientId);
         }
     }
 }
