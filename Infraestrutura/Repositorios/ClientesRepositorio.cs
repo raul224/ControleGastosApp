@@ -14,7 +14,18 @@ public class ClientesRepositorio : IClientesRepositorio
     
     public IEnumerable<Lancamento> GetLancamentos(int clientId)
     {
-        return _context.Lancamentos.Where(x => x.clientId == clientId);
+        return _context.Lancamentos.Where(x => x.clientId == clientId && x.dataLancamento < DateTime.Now.AddDays(90));
+    }
+
+    public IEnumerable<Lancamento> GetLancamentosComFiltro(DateTime dataIncio, DateTime dataFim)
+    {
+        return _context.Lancamentos.Where(x => x.dataLancamento >= dataIncio && x.dataLancamento <= dataFim);
+    }
+
+    public async Task cadastraLancamento(Lancamento lancamento)
+    {
+        _context.Lancamentos.Add(lancamento);
+        await _context.SaveChangesAsync();
     }
 
     public Cliente GetCliente(int clientId)

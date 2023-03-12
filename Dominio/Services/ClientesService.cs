@@ -17,6 +17,11 @@ namespace Dominio.Services
             return _clientesRepositorio.GetLancamentos(id).ToList();
         }
 
+        public async Task CadastraLancamento(Lancamento lancamento)
+        {
+            await _clientesRepositorio.cadastraLancamento(lancamento);
+        }
+
         public Cliente GetCliente(int clientId)
         {
             return _clientesRepositorio.GetCliente(clientId);

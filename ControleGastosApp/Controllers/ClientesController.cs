@@ -1,3 +1,4 @@
+using Dominio.Entidades;
 using Dominio.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,12 +20,26 @@ namespace ControleGastosApp.Controllers
         [HttpGet]
         public IActionResult GetSaldo([FromQuery] int clientId)
         {
-            
-            return Ok();
+            var cliente = _clientesService.GetCliente(clientId);
+            return Ok(cliente);
         }
 
         [HttpGet]
         public IActionResult GetLancamentos([FromQuery]int clientId)
+        {
+            var lancamentos = _clientesService.GetLancamentos(clientId);
+            return Ok(lancamentos);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CadastraLancamento([FromBody] Lancamento lancamento)
+        {
+            await _clientesService.CadastraLancamento(lancamento);
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult GetLancamentosAnteriores90Dias([FromBody]DateTime dataInicio,[FromBody] DateTime dataFim)
         {
             
             return Ok();
