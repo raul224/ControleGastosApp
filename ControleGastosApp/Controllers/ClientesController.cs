@@ -41,8 +41,8 @@ namespace ControleGastosApp.Controllers
         [HttpPost]
         public IActionResult GetLancamentosAnteriores90Dias([FromBody]DateTime dataInicio,[FromBody] DateTime dataFim)
         {
-            
-            return Ok();
+            var lancamentos = _clientesService.GetLancamentosComFiltro(dataInicio, dataFim);
+            return Ok(lancamentos);
         }
     }
 }

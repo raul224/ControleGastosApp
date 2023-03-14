@@ -17,6 +17,13 @@ namespace Dominio.Services
             return _clientesRepositorio.GetLancamentos(id).ToList();
         }
 
+        public List<Lancamento> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim)
+        {
+            //Tornar esse método em um retorno de um arquivo csv
+            return _clientesRepositorio.GetLancamentosComFiltro(dataInicio, dataFim).ToList();
+        }
+        
+
         public async Task CadastraLancamento(Lancamento lancamento)
         {
             await _clientesRepositorio.cadastraLancamento(lancamento);
