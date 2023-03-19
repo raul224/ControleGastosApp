@@ -12,11 +12,16 @@ public class DatabaseContext : DbContext
 
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Lancamento> Lancamentos { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cliente>()
             .HasMany(b => b.lancamentos)
+            .WithOne();
+
+        modelBuilder.Entity<Usuario>()
+            .HasOne<Cliente>()
             .WithOne();
     }
 }

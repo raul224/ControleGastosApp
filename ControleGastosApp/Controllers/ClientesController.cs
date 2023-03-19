@@ -1,3 +1,6 @@
+using System.Globalization;
+using System.Text;
+using CsvHelper;
 using Dominio.Entidades;
 using Dominio.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +45,15 @@ namespace ControleGastosApp.Controllers
         public IActionResult GetLancamentosAnteriores90Dias([FromBody]DateTime dataInicio,[FromBody] DateTime dataFim)
         {
             var lancamentos = _clientesService.GetLancamentosComFiltro(dataInicio, dataFim);
-            return Ok(lancamentos);
+            using (var writer = new StreamWriter("lancamentos.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.CurrentCulture))
+            {
+                csv.WriteRecord(lancamentos);
+            }
+            
+            var bytes = Encoding.UTF8.GetBytes("lancamentos.csv");
+            
+            return File(bytes, "text/csv", "lancamentos.csv");
         }
     }
 }

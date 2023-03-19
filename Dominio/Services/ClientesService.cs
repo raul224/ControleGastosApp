@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Dominio.Entidades;
+﻿using Dominio.Entidades;
 using Dominio.IRepositorios;
 
 namespace Dominio.Services
@@ -19,11 +18,9 @@ namespace Dominio.Services
 
         public List<Lancamento> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim)
         {
-            //Tornar esse método em um retorno de um arquivo csv
             return _clientesRepositorio.GetLancamentosComFiltro(dataInicio, dataFim).ToList();
         }
         
-
         public async Task CadastraLancamento(Lancamento lancamento)
         {
             await _clientesRepositorio.cadastraLancamento(lancamento);
