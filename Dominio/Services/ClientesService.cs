@@ -26,9 +26,9 @@ namespace Dominio.Services
             await _clientesRepositorio.cadastraLancamento(lancamento);
         }
 
-        public Cliente GetCliente(int clientId)
+        public async Task<Cliente> GetCliente(int clientId)
         {
-            return _clientesRepositorio.GetCliente(clientId);
+            return await _clientesRepositorio.GetCliente(clientId);
         }
     }
 }

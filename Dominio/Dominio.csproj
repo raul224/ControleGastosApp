@@ -11,15 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Dto\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Dto\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Dto\**" />
+    <Compile Include="Dto\UsuarioClienteDto.cs" />
   </ItemGroup>
 
 </Project>

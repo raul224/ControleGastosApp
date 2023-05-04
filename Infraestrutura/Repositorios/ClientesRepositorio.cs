@@ -34,9 +34,9 @@ public class ClientesRepositorio : IClientesRepositorio
         await _context.SaveChangesAsync();
     }
 
-    public Cliente GetCliente(int clientId)
+    public async Task<Cliente> GetCliente(int clientId)
     {
-        var cliente = _context.Clientes.Find(clientId);
+        var cliente = await _context.Clientes.FindAsync(clientId);
         return cliente ?? new Cliente();
     }
 
