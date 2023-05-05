@@ -32,7 +32,7 @@ namespace ControleGastosApp.Controllers
         }
 
         [HttpPost]
-        [Route("/register")]
+        [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
             try

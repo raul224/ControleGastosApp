@@ -10,8 +10,4 @@
     <Folder Include="Entidades\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="Dto\UsuarioClienteDto.cs" />
-  </ItemGroup>
-
 </Project>

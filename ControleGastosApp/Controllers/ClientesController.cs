@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text;
 using CsvHelper;
+using Dominio.Dto;
 using Dominio.Entidades;
 using Dominio.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace ControleGastosApp.Controllers
         }
 
         [HttpGet]
+        [Route("Saldo")]
         public IActionResult GetSaldo([FromQuery] int clientId)
         {
             var cliente = _clientesService.GetCliente(clientId);
@@ -28,6 +30,7 @@ namespace ControleGastosApp.Controllers
         }
 
         [HttpGet]
+        [Route("Lancamentos")]
         public IActionResult GetLancamentos([FromQuery]int clientId)
         {
             var lancamentos = _clientesService.GetLancamentos(clientId);
@@ -35,6 +38,7 @@ namespace ControleGastosApp.Controllers
         }
 
         [HttpPost]
+        [Route("Lancamentos")]
         public async Task<IActionResult> CadastraLancamento([FromBody] Lancamento lancamento)
         {
             await _clientesService.CadastraLancamento(lancamento);
@@ -42,9 +46,10 @@ namespace ControleGastosApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetLancamentosAnteriores90Dias([FromBody]DateTime dataInicio,[FromBody] DateTime dataFim)
+        [Route("Lancamentos/Anterior")]
+        public IActionResult GetLancamentosAnteriores90Dias([FromBody]DataRangeModel dataRange)
         {
-            var lancamentos = _clientesService.GetLancamentosComFiltro(dataInicio, dataFim);
+            var lancamentos = _clientesService.GetLancamentosComFiltro(dataRange.dataInicial,dataRange.dataFinal);
             using (var writer = new StreamWriter("lancamentos.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.CurrentCulture))
             {

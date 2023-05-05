@@ -1,0 +1,15 @@
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\bin\Debug\net6.0\Infraestrutura.deps.json
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\bin\Debug\net6.0\Infraestrutura.dll
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\bin\Debug\net6.0\Infraestrutura.pdb
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\bin\Debug\net6.0\Dominio.dll
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\bin\Debug\net6.0\Dominio.pdb
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.csproj.AssemblyReference.cache
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.AssemblyInfoInputs.cache
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.AssemblyInfo.cs
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.csproj.CoreCompileInputs.cache
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.csproj.CopyComplete
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.dll
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\refint\Infraestrutura.dll
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\Infraestrutura.pdb
+C:\Users\raulp\Dev\ControleGastosApp\Infraestrutura\obj\Debug\net6.0\ref\Infraestrutura.dll
