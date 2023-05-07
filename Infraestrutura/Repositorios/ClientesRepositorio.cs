@@ -40,10 +40,11 @@ public class ClientesRepositorio : IClientesRepositorio
         return cliente ?? new Cliente();
     }
 
-    public async Task CadastraCliente()
+    public async Task<Cliente> CadastraCliente()
     {
         var cliente = new Cliente();
         await _context.Clientes.AddAsync(cliente);
         await _context.SaveChangesAsync();
+        return _context.Clientes.Last(); // Validar
     }
 }

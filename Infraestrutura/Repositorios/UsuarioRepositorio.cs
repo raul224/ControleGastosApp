@@ -13,23 +13,25 @@ public class UsuarioRepositorio : IUsuarioRepositorio
         _dbContext = dbContext;
     }
     
-    public async Task<Usuario> GetUsuario(string userName, string password)
+    public async Task<Usuario> GetUsuario(string email, string password)
     {
         return await _dbContext.Usuarios
             .Where(x => 
-                x.userName.Equals(userName.ToLower()) && 
+                x.email.Equals(email.ToLower()) && 
                 x.password.Equals(password.ToLower())).FirstAsync();
     }
 
-    public async Task CadastraUsuario(string userName, string password, int clientId)
+    public async Task<Usuario> CadastraUsuario(string email, string password, string name,int clientId)
     {
         var usuario = new Usuario
         {
-            userName = userName,
+            email = email,
             password = password,
+            name = name,
             clientId = clientId
         };
         await _dbContext.Usuarios.AddAsync(usuario);
         await _dbContext.SaveChangesAsync();
+        return await GetUsuario(email, password);
     }
 }
