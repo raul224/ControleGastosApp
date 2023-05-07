@@ -21,14 +21,13 @@ public class UsuarioRepositorio : IUsuarioRepositorio
                 x.password.Equals(password.ToLower())).FirstAsync();
     }
 
-    public async Task<Usuario> CadastraUsuario(string email, string password, string name,int clientId)
+    public async Task<Usuario> CadastraUsuario(string email, string password, string name)
     {
         var usuario = new Usuario
         {
             email = email,
             password = password,
-            name = name,
-            clientId = clientId
+            name = name
         };
         await _dbContext.Usuarios.AddAsync(usuario);
         await _dbContext.SaveChangesAsync();

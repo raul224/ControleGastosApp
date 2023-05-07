@@ -1,5 +1,6 @@
 ﻿using Dominio.Dto;
 using Dominio.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleGastosApp.Controllers
@@ -20,35 +21,23 @@ namespace ControleGastosApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            try
-            {
-                var usuarioAutorizado = await _usuarioService.EfetuaLogin(
-                    loginModel.email, 
-                    loginModel.password);
-                return Ok(usuarioAutorizado);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
+            var usuarioAutorizado = await _usuarioService.EfetuaLogin(
+                loginModel.email, 
+                loginModel.password);
+            return Ok(usuarioAutorizado);
+            
         }
 
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
-            try
-            {
-                var newUser = await _usuarioService.RegisterUser(
-                    registerModel.email, 
-                    registerModel.name, 
-                    registerModel.password);
-                return Ok(newUser);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
+            var newUser = await _usuarioService.RegisterUser(
+                registerModel.email, 
+                registerModel.name, 
+                registerModel.password);
+            return Ok(newUser);
+            
         }
     }
 }

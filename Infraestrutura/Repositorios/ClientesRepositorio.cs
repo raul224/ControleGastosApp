@@ -39,12 +39,4 @@ public class ClientesRepositorio : IClientesRepositorio
         var cliente = await _context.Clientes.FindAsync(clientId);
         return cliente ?? new Cliente();
     }
-
-    public async Task<Cliente> CadastraCliente()
-    {
-        var cliente = new Cliente();
-        await _context.Clientes.AddAsync(cliente);
-        await _context.SaveChangesAsync();
-        return _context.Clientes.Last(); // Validar
-    }
 }
