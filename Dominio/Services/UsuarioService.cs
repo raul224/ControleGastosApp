@@ -21,13 +21,10 @@ public class UsuarioService : IUsuarioService
         return user.Cliente;
     }
 
-    public async Task<UsuarioClienteDto> RegisterUser(string email, string name, string password)
+    public async Task<Usuario> RegisterUser(string email, string name, string password)
     {
         var user = await _usuarioRepositorio.CadastraUsuario(email, password, name);
-        // Adicionar o cliente ao objeto
-        return new UsuarioClienteDto
-        {
-            Usuario = user
-        };
+        await _clienteRepositorio.CadastraCliente(user);
+        return await _usuarioRepositorio.GetUsuario(email, password);
     }
 }

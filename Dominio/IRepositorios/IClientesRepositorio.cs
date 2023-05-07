@@ -8,4 +8,5 @@ public interface IClientesRepositorio
     IEnumerable<Lancamento> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim);
     Task cadastraLancamento(Lancamento lancamento);
     Task<Cliente> GetCliente(int clientId);
+    Task CadastraCliente(Usuario usuario);
 }
