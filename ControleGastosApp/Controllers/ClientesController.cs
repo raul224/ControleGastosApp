@@ -49,7 +49,9 @@ namespace ControleGastosApp.Controllers
         [Route("Lancamentos/Anterior")]
         public IActionResult GetLancamentosAnteriores90Dias([FromBody]DataRangeModel dataRange)
         {
-            var lancamentos = _clientesService.GetLancamentosComFiltro(dataRange.dataInicial,dataRange.dataFinal);
+            var lancamentos = _clientesService.GetLancamentosComFiltro(
+                dataRange.dataInicial,
+                dataRange.dataFinal);
             using (var writer = new StreamWriter("lancamentos.csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.CurrentCulture))
             {

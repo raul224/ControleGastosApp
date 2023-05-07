@@ -22,7 +22,9 @@ namespace ControleGastosApp.Controllers
         {
             try
             {
-                var usuarioAutorizado = await _usuarioService.EfetuaLogin(loginModel.email, loginModel.password);
+                var usuarioAutorizado = await _usuarioService.EfetuaLogin(
+                    loginModel.email, 
+                    loginModel.password);
                 return Ok(usuarioAutorizado);
             }
             catch (Exception e)
@@ -37,7 +39,10 @@ namespace ControleGastosApp.Controllers
         {
             try
             {
-                var newUser = await _usuarioService.RegisterUser(registerModel.email, registerModel.name, registerModel.password);
+                var newUser = await _usuarioService.RegisterUser(
+                    registerModel.email, 
+                    registerModel.name, 
+                    registerModel.password);
                 return Ok(newUser);
             }
             catch (Exception e)
