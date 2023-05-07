@@ -1,4 +1,5 @@
 ﻿using Dominio.Dto;
+using Dominio.Entidades;
 using Dominio.IRepositorios;
 
 namespace Dominio.Services;
@@ -14,16 +15,10 @@ public class UsuarioService : IUsuarioService
         _clienteRepositorio = clienteRepositorio;
     }
     
-    public async Task<UsuarioClienteDto> EfetuaLogin(string userName, string password)
+    public async Task<Cliente> EfetuaLogin(string userName, string password)
     {
         var user = await _usuarioRepositorio.GetUsuario(userName, password);
-        var cliente = await _clienteRepositorio.GetCliente(user.clientId);
-
-        return new UsuarioClienteDto
-        {
-            Usuario = user,
-            Cliente = cliente
-        };
+        return user.Cliente;
     }
 
     public async Task<UsuarioClienteDto> RegisterUser(string email, string name, string password)

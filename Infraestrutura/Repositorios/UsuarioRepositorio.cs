@@ -17,17 +17,17 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     {
         return await _dbContext.Usuarios
             .Where(x => 
-                x.email.Equals(email.ToLower()) && 
-                x.password.Equals(password.ToLower())).FirstAsync();
+                x.Email.Equals(email.ToLower()) && 
+                x.Password.Equals(password.ToLower())).FirstAsync();
     }
 
     public async Task<Usuario> CadastraUsuario(string email, string password, string name)
     {
         var usuario = new Usuario
         {
-            email = email,
-            password = password,
-            name = name
+            Email = email,
+            Password = password,
+            Name = name
         };
         await _dbContext.Usuarios.AddAsync(usuario);
         await _dbContext.SaveChangesAsync();

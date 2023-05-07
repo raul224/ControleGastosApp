@@ -8,10 +8,11 @@ namespace Dominio.Entidades
     {
         [Key]
         public int id { get; set; }
-        public DateTime dataLancamento { get; set; }
-        public string descricaoLancamento { get; set; }
-        public double valor { get; set; }
+        public DateTime DataLancamento { get; set; }
+        public string DescricaoLancamento { get; set; }
+        public double Valor { get; set; }
         [ForeignKey("clientId")]
-        public int clientId { get; set; }
+        public int ClientId { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }

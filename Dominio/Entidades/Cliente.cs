@@ -7,8 +7,11 @@ namespace Dominio.Entidades
     public class Cliente
     {
         [Key]
-        public int clientId { get; set; }
-        public double saldo { get; set; }
-        public List<Lancamento> lancamentos { get; set; }
+        public int ClientId { get; set; }
+        public double Saldo { get; set; }
+        [ForeignKey("UsuarioId")]
+        public int UsaurioId { get; set; }
+        public Usuario Usuario { get; set; }
+        public IEnumerable<Lancamento> Lancamentos { get; set; }
     }
 }

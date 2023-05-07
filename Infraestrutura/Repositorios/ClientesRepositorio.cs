@@ -16,16 +16,16 @@ public class ClientesRepositorio : IClientesRepositorio
     {
         return _context
         .Lancamentos
-        .Where(x => x.clientId == clientId && 
-                    x.dataLancamento < DateTime.Now.AddDays(90));
+        .Where(x => x.ClientId == clientId && 
+                    x.DataLancamento < DateTime.Now.AddDays(90));
     }
 
     public IEnumerable<Lancamento> GetLancamentosComFiltro(DateTime dataIncio, DateTime dataFim)
     {
         return _context
             .Lancamentos
-            .Where(x => x.dataLancamento >= dataIncio && 
-                        x.dataLancamento <= dataFim);
+            .Where(x => x.DataLancamento >= dataIncio && 
+                        x.DataLancamento <= dataFim);
     }
 
     public async Task cadastraLancamento(Lancamento lancamento)

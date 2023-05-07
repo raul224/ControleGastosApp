@@ -7,10 +7,11 @@ namespace Dominio.Entidades;
 public class Usuario
 {
     [Key]
-    public int id { get; set; }
-    public string email { get; set; }
-    public string password { get; set; }
-    public string name { get; set; }
+    public int Id { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public string Name { get; set; }
     [ForeignKey("clientId")]
-    public int clientId { get; set; }
+    public int ClienteId { get; set; }
+    public Cliente Cliente { get; set; }
 }
