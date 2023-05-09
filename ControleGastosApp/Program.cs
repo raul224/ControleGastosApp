@@ -5,6 +5,8 @@ using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<DatabaseSettings>(
+    builder.Configuration.GetSection("MongoDataBase"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,8 +15,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IClientesService, ClientesService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-
-builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 

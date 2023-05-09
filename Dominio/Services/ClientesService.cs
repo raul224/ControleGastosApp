@@ -11,24 +11,24 @@ namespace Dominio.Services
         {
             _clientesRepositorio = clientesRepositorio;
         }
-        public List<Lancamento> GetLancamentos(int id)
+        public async Task<IEnumerable<Lancamento>> GetLancamentos(int id)
         {
-            return _clientesRepositorio.GetLancamentos(id).ToList();
+            return await _clientesRepositorio.GetLancamentosAsync(id);
         }
 
-        public List<Lancamento> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim)
+        public Task<IEnumerable<Lancamento>> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim)
         {
-            return _clientesRepositorio.GetLancamentosComFiltro(dataInicio, dataFim).ToList();
+            return _clientesRepositorio.GetLancamentosComFiltroAsync(dataInicio, dataFim);
         }
         
         public async Task CadastraLancamento(Lancamento lancamento)
         {
-            await _clientesRepositorio.cadastraLancamento(lancamento);
+            await _clientesRepositorio.cadastraLancamentoAsync(lancamento);
         }
 
         public async Task<Cliente> GetCliente(int clientId)
         {
-            return await _clientesRepositorio.GetCliente(clientId);
+            return await _clientesRepositorio.GetClienteAsync(clientId);
         }
     }
 }

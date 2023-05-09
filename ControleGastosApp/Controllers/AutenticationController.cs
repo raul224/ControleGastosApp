@@ -9,12 +9,10 @@ namespace ControleGastosApp.Controllers
     [Route("[Controller]")]
     public class AutenticationController : ControllerBase
     {
-        private readonly ILogger<ClientesController> _logger;
         public readonly IUsuarioService _usuarioService;
 
-        public AutenticationController(ILogger<ClientesController> logger, IUsuarioService usuarioService)
+        public AutenticationController(IUsuarioService usuarioService)
         {
-            _logger = logger;
             _usuarioService = usuarioService;
         }
 

@@ -4,9 +4,10 @@ namespace Dominio.IRepositorios;
 
 public interface IClientesRepositorio
 {
-    IEnumerable<Lancamento> GetLancamentos(int clientId);
-    IEnumerable<Lancamento> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim);
-    Task cadastraLancamento(Lancamento lancamento);
-    Task<Cliente> GetCliente(int clientId);
-    Task CadastraCliente(Usuario usuario);
+    Task<IEnumerable<Lancamento>> GetLancamentosAsync(int clientId);
+    Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim);
+    Task cadastraLancamentoAsync(Lancamento lancamento);
+    Task<Cliente> GetClienteAsync(int clientId);
+    Task CadastraClienteAsync(Usuario usuario);
+    Task<Cliente> GetClientByUser(int userId);
 }

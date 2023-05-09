@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "8iyJcMzuT3wxxcyn0jDeNZ8Iai/CcKKMyC7eJ9oXzToFfbalGQKcE5DLdl3DwiGSVlRNcD0kWK/tr0nYx4yHAQ==",
+  "dgSpecHash": "AuubvALQ5VL2UdRmhwYIhibOWjJkmQCQ4WmugrB4kBFAFCtNcAku0ENYneH+6q7JIq+Xgn9jMTUY4etcFQFXuw==",
   "success": true,
   "projectFilePath": "C:\\Users\\raulp\\Dev\\ControleGastosApp\\Dominio\\Dominio.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\raulp\\.nuget\\packages\\mongodb.bson\\2.19.1\\mongodb.bson.2.19.1.nupkg.sha512",
+    "C:\\Users\\raulp\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

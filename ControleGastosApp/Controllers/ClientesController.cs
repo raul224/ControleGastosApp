@@ -12,12 +12,10 @@ namespace ControleGastosApp.Controllers
     [Route("[controller]")]
     public class ClientesController : ControllerBase
     {
-        private readonly ILogger<ClientesController> _logger;
         private readonly IClientesService _clientesService;
 
-        public ClientesController(ILogger<ClientesController> logger, IClientesService clientesService)
+        public ClientesController(IClientesService clientesService)
         {
-            _logger = logger;
             _clientesService = clientesService;
         }
 

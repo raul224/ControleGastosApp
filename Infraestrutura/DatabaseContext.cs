@@ -16,19 +16,6 @@ public class DatabaseContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Cliente>()
-            .HasMany(c => c.Lancamentos)
-            .WithOne(l => l.Cliente)
-            .HasForeignKey(l => l.ClientId);
-
-        modelBuilder.Entity<Usuario>()
-            .HasOne<Cliente>(u => u.Cliente)
-            .WithOne(c => c.Usuario)
-            .HasForeignKey<Cliente>(c => c.ClientId);
-
-        modelBuilder.Entity<Lancamento>()
-            .HasOne<Cliente>(l => l.Cliente)
-            .WithMany(c => c.Lancamentos)
-            .HasForeignKey(l => l.ClientId);
+        
     }
 }

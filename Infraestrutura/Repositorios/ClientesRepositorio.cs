@@ -1,54 +1,68 @@
 ﻿using Dominio.Entidades;
 using Dominio.IRepositorios;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace Infraestrutura.Repositorios;
 
 public class ClientesRepositorio : IClientesRepositorio
 {
-    private DatabaseContext _context;
+    private readonly IMongoCollection<Cliente> clienteCollection;
+    private readonly IMongoCollection<Lancamento> lancamentoCollection;
 
-    public ClientesRepositorio(DatabaseContext context)
+    public ClientesRepositorio(IOptions<DatabaseSettings> databaseSettings)
     {
-        _context = context;
+        var mongoClient = new MongoClient(
+            databaseSettings.Value.ConnectionString);
+
+        var mongoDatabase = mongoClient.GetDatabase(
+            databaseSettings.Value.DataBaseName);
+
+        clienteCollection = mongoDatabase.GetCollection<Cliente>("Clientes");
+        lancamentoCollection = mongoDatabase.GetCollection<Lancamento>("Lancamentos");
     }
     
-    public IEnumerable<Lancamento> GetLancamentos(int clientId)
+    public async Task<IEnumerable<Lancamento>> GetLancamentosAsync(int clientId)
     {
-        return _context
-        .Lancamentos
-        .Where(x => x.ClientId == clientId && 
+        var cursor =  await lancamentoCollection
+        .FindAsync(x => x.ClientId == clientId && 
                     x.DataLancamento < DateTime.Now.AddDays(90));
+        return await cursor.ToListAsync();
     }
 
-    public IEnumerable<Lancamento> GetLancamentosComFiltro(DateTime dataIncio, DateTime dataFim)
+    public async Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim)
     {
-        return _context
-            .Lancamentos
-            .Where(x => x.DataLancamento >= dataIncio && 
-                        x.DataLancamento <= dataFim);
+        var cursor = await lancamentoCollection.FindAsync(
+            x => x.DataLancamento >= dataIncio && 
+                 x.DataLancamento <= dataFim);
+        return await cursor.ToListAsync();
     }
 
-    public async Task cadastraLancamento(Lancamento lancamento)
+    public async Task cadastraLancamentoAsync(Lancamento lancamento)
     {
-        _context.Lancamentos.Add(lancamento);
-        await _context.SaveChangesAsync();
+        await lancamentoCollection.InsertOneAsync(lancamento);
     }
 
-    public async Task<Cliente> GetCliente(int clientId)
+    public async Task<Cliente> GetClienteAsync(int clientId)
     {
-        var cliente = await _context.Clientes.FindAsync(clientId);
-        return cliente ?? new Cliente();
+        var cliente = 
+            await clienteCollection.FindAsync(x => x.ClientId == clientId);
+        return await cliente.FirstOrDefaultAsync();
     }
 
-    public async Task CadastraCliente(Usuario usuario)
+    public async Task CadastraClienteAsync(Usuario usuario)
     {
         var cliente = new Cliente
         {
             Saldo = 0,
-            Usuario = usuario,
-            UsaurioId = usuario.Id
+            UsuarioId= usuario.Id
         };
-        await _context.Clientes.AddAsync(cliente);
-        await _context.SaveChangesAsync();
+        await clienteCollection.InsertOneAsync(cliente);
+    }
+
+    public async Task<Cliente> GetClientByUser(int userId)
+    {
+        var cursor = await clienteCollection.FindAsync(x => x.UsuarioId == userId);
+        return await cursor.FirstOrDefaultAsync();
     }
 }

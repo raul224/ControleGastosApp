@@ -1,17 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Dominio.Entidades
 {
-    [Table("Cliente")]
     public class Cliente
     {
-        [Key]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public int ClientId { get; set; }
         public double Saldo { get; set; }
-        [ForeignKey("UsuarioId")]
-        public int UsaurioId { get; set; }
-        public Usuario Usuario { get; set; }
-        public IEnumerable<Lancamento> Lancamentos { get; set; }
+        public int UsuarioId { get; set; }
     }
 }

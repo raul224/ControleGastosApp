@@ -1,17 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Dominio.Entidades;
 
-[Table("Usuario")]
 public class Usuario
 {
-    [Key]
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
     public int Id { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
     public string Name { get; set; }
-    [ForeignKey("clientId")]
     public int ClienteId { get; set; }
-    public Cliente Cliente { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using Dominio.Dto;
-using Dominio.Entidades;
+﻿using Dominio.Entidades;
 
 namespace Dominio.Services;
 

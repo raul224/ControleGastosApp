@@ -1,5 +1,4 @@
-﻿using Dominio.Dto;
-using Dominio.Entidades;
+﻿using Dominio.Entidades;
 using Dominio.IRepositorios;
 
 namespace Dominio.Services;
@@ -15,16 +14,16 @@ public class UsuarioService : IUsuarioService
         _clienteRepositorio = clienteRepositorio;
     }
     
-    public async Task<Cliente> EfetuaLogin(string userName, string password)
+    public async Task<Cliente> EfetuaLogin(string email, string password)
     {
-        var user = await _usuarioRepositorio.GetUsuario(userName, password);
-        return user.Cliente;
+        var user = await _usuarioRepositorio.GetUsuarioAsync(email, password);
+        return await _clienteRepositorio.GetClientByUser(user.Id);
     }
 
     public async Task<Usuario> RegisterUser(string email, string name, string password)
     {
-        var user = await _usuarioRepositorio.CadastraUsuario(email, password, name);
-        await _clienteRepositorio.CadastraCliente(user);
-        return await _usuarioRepositorio.GetUsuario(email, password);
+        var user = await _usuarioRepositorio.CadastraUsuarioAsync(email, password, name);
+        await _clienteRepositorio.CadastraClienteAsync(user);
+        return await _usuarioRepositorio.GetUsuarioAsync(email, password);
     }
 }

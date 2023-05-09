@@ -1,18 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Dominio.Entidades
 {
-    [Table("Lancamentos")]
     public class Lancamento
     {
-        [Key]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public int id { get; set; }
         public DateTime DataLancamento { get; set; }
         public string DescricaoLancamento { get; set; }
-        public double Valor { get; set; }
         [ForeignKey("clientId")]
         public int ClientId { get; set; }
-        public Cliente Cliente { get; set; }
     }
 }

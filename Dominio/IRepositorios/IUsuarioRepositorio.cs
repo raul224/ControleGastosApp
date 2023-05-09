@@ -4,6 +4,6 @@ namespace Dominio.IRepositorios;
 
 public interface IUsuarioRepositorio
 {
-    Task<Usuario> GetUsuario(string email, string password);
-    Task<Usuario> CadastraUsuario(string email, string password, string name);
+    Task<Usuario> GetUsuarioAsync(string email, string password);
+    Task<Usuario> CadastraUsuarioAsync(string email, string password, string name);
 }

@@ -1,27 +1,33 @@
 ﻿using Dominio.Entidades;
 using Dominio.IRepositorios;
-using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
 
 namespace Infraestrutura.Repositorios;
 
 public class UsuarioRepositorio : IUsuarioRepositorio
 {
-    private DatabaseContext _dbContext;
+    private readonly IMongoCollection<Usuario> usuarioCollection; 
     
-    public UsuarioRepositorio(DatabaseContext dbContext)
+    public UsuarioRepositorio(IOptions<DatabaseSettings> databaseSettings)
     {
-        _dbContext = dbContext;
+        var mongoClient = new MongoClient(
+            databaseSettings.Value.ConnectionString);
+
+        var mongoDatabase = mongoClient.GetDatabase(
+            databaseSettings.Value.DataBaseName);
+
+        usuarioCollection = mongoDatabase.GetCollection<Usuario>("Usuarios");
     }
     
-    public async Task<Usuario> GetUsuario(string email, string password)
+    public async Task<Usuario> GetUsuarioAsync(string email, string password)
     {
-        return await _dbContext.Usuarios
-            .Where(x => 
-                x.Email.Equals(email.ToLower()) && 
-                x.Password.Equals(password.ToLower())).FirstAsync();
+        return await usuarioCollection.FindSync(x => 
+            x.Email.Equals(email.ToLower()) && 
+            x.Password.Equals(password.ToLower())).FirstOrDefaultAsync();
     }
 
-    public async Task<Usuario> CadastraUsuario(string email, string password, string name)
+    public async Task<Usuario> CadastraUsuarioAsync(string email, string password, string name)
     {
         var usuario = new Usuario
         {
@@ -29,8 +35,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
             Password = password,
             Name = name
         };
-        await _dbContext.Usuarios.AddAsync(usuario);
-        await _dbContext.SaveChangesAsync();
-        return await GetUsuario(email, password);
+        await usuarioCollection.InsertOneAsync(usuario);
+        return await GetUsuarioAsync(email, password);
     }
 }
