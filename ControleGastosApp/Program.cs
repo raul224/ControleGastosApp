@@ -1,5 +1,7 @@
+using Dominio.IRepositorios;
 using Dominio.Services;
 using Infraestrutura;
+using Infraestrutura.Repositorios;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IClientesService, ClientesService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 var app = builder.Build();
 
