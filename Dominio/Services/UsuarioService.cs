@@ -20,10 +20,26 @@ public class UsuarioService : IUsuarioService
         return await _clienteRepositorio.GetClientByUser(user.Id);
     }
 
-    public async Task<Usuario> RegisterUser(string email, string name, string password)
+    public async Task<Cliente> RegisterUser(string email, string name, string password)
     {
-        var user = await _usuarioRepositorio.CadastraUsuarioAsync(email, password, name);
-        await _clienteRepositorio.CadastraClienteAsync(user);
-        return await _usuarioRepositorio.GetUsuarioAsync(email, password);
+        var usuario = new Usuario
+        {
+            Id = new Guid().ToString(),
+            Email = email,
+            Password = password,
+            Name = name
+        };
+        var cliente = new Cliente
+        {
+            Id = new Guid().ToString(),
+            Saldo = 0,
+            UsuarioId= usuario.Id
+        };
+        usuario.ClienteId = cliente.Id;
+        cliente.UsuarioId = usuario.Id;
+        
+        await _usuarioRepositorio.CadastraUsuarioAsync(usuario);
+        await _clienteRepositorio.CadastraClienteAsync(cliente);
+        return cliente;
     }
 }

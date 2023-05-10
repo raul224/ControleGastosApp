@@ -27,15 +27,8 @@ public class UsuarioRepositorio : IUsuarioRepositorio
             x.Password.Equals(password.ToLower())).FirstOrDefaultAsync();
     }
 
-    public async Task<Usuario> CadastraUsuarioAsync(string email, string password, string name)
+    public async Task CadastraUsuarioAsync(Usuario usuario)
     {
-        var usuario = new Usuario
-        {
-            Email = email,
-            Password = password,
-            Name = name
-        };
         await usuarioCollection.InsertOneAsync(usuario);
-        return await GetUsuarioAsync(email, password);
     }
 }

@@ -22,10 +22,10 @@ public class ClientesRepositorio : IClientesRepositorio
         lancamentoCollection = mongoDatabase.GetCollection<Lancamento>("Lancamentos");
     }
     
-    public async Task<IEnumerable<Lancamento>> GetLancamentosAsync(int clientId)
+    public async Task<IEnumerable<Lancamento>> GetLancamentosAsync(string clientId)
     {
         var cursor =  await lancamentoCollection
-        .FindAsync(x => x.ClientId == clientId && 
+        .FindAsync(x => x.ClientId.Equals(clientId) && 
                     x.DataLancamento < DateTime.Now.AddDays(90));
         return await cursor.ToListAsync();
     }
@@ -43,26 +43,21 @@ public class ClientesRepositorio : IClientesRepositorio
         await lancamentoCollection.InsertOneAsync(lancamento);
     }
 
-    public async Task<Cliente> GetClienteAsync(int clientId)
+    public async Task<Cliente> GetClienteAsync(string clientId)
     {
         var cliente = 
-            await clienteCollection.FindAsync(x => x.ClientId == clientId);
+            await clienteCollection.FindAsync(x => x.Id.Equals(clientId));
         return await cliente.FirstOrDefaultAsync();
     }
 
-    public async Task CadastraClienteAsync(Usuario usuario)
+    public async Task CadastraClienteAsync(Cliente cliente)
     {
-        var cliente = new Cliente
-        {
-            Saldo = 0,
-            UsuarioId= usuario.Id
-        };
         await clienteCollection.InsertOneAsync(cliente);
     }
 
-    public async Task<Cliente> GetClientByUser(int userId)
+    public async Task<Cliente> GetClientByUser(string userId)
     {
-        var cursor = await clienteCollection.FindAsync(x => x.UsuarioId == userId);
+        var cursor = await clienteCollection.FindAsync(x => x.UsuarioId.Equals(userId));
         return await cursor.FirstOrDefaultAsync();
     }
 }

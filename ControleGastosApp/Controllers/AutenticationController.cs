@@ -30,11 +30,11 @@ namespace ControleGastosApp.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
-            var newUser = await _usuarioService.RegisterUser(
+            var newUserClient = await _usuarioService.RegisterUser(
                 registerModel.email, 
                 registerModel.name, 
                 registerModel.password);
-            return Ok(newUser);
+            return Ok(newUserClient);
             
         }
     }

@@ -11,7 +11,7 @@ namespace Dominio.Services
         {
             _clientesRepositorio = clientesRepositorio;
         }
-        public async Task<IEnumerable<Lancamento>> GetLancamentos(int id)
+        public async Task<IEnumerable<Lancamento>> GetLancamentos(string id)
         {
             return await _clientesRepositorio.GetLancamentosAsync(id);
         }
@@ -26,7 +26,7 @@ namespace Dominio.Services
             await _clientesRepositorio.cadastraLancamentoAsync(lancamento);
         }
 
-        public async Task<Cliente> GetCliente(int clientId)
+        public async Task<Cliente> GetCliente(string clientId)
         {
             return await _clientesRepositorio.GetClienteAsync(clientId);
         }

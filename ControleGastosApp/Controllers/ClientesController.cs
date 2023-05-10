@@ -21,7 +21,7 @@ namespace ControleGastosApp.Controllers
 
         [HttpGet]
         [Route("Saldo")]
-        public IActionResult GetSaldo([FromQuery] int clientId)
+        public IActionResult GetSaldo([FromQuery] string clientId)
         {
             var cliente = _clientesService.GetCliente(clientId);
             return Ok(cliente);
@@ -29,7 +29,7 @@ namespace ControleGastosApp.Controllers
 
         [HttpGet]
         [Route("Lancamentos")]
-        public IActionResult GetLancamentos([FromQuery]int clientId)
+        public IActionResult GetLancamentos([FromQuery]string clientId)
         {
             var lancamentos = _clientesService.GetLancamentos(clientId);
             return Ok(lancamentos);

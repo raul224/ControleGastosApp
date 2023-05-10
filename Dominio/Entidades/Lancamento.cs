@@ -8,10 +8,9 @@ namespace Dominio.Entidades
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int id { get; set; }
+        public string id { get; set; }
         public DateTime DataLancamento { get; set; }
         public string DescricaoLancamento { get; set; }
-        [ForeignKey("clientId")]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
     }
 }

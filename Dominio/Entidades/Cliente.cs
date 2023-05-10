@@ -7,8 +7,8 @@ namespace Dominio.Entidades
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int ClientId { get; set; }
+        public string Id { get; set; }
         public double Saldo { get; set; }
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
     }
 }
