@@ -8,7 +8,7 @@ namespace Dominio.Entidades
     {
         [BsonId(IdGenerator = typeof(ObjectIdGenerator))]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string id { get; set; }
+        public ObjectId Id { get; set; }
         public DateTime DataLancamento { get; set; }
         public string DescricaoLancamento { get; set; }
         public string UsuarioId { get; set; }
