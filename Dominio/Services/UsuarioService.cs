@@ -1,45 +1,33 @@
 ﻿using Dominio.Entidades;
 using Dominio.IRepositorios;
+using Dominio.Services.Interfaces;
 
 namespace Dominio.Services;
 
 public class UsuarioService : IUsuarioService
 {
-    public IUsuarioRepositorio _usuarioRepositorio;
-    public IClientesRepositorio _clienteRepositorio;
+    private readonly IUsuarioRepositorio _usuarioRepositorio;
     
-    public UsuarioService(IUsuarioRepositorio usuarioRepositorio, IClientesRepositorio clienteRepositorio)
+    public UsuarioService(IUsuarioRepositorio usuarioRepositorio)
     {
         _usuarioRepositorio = usuarioRepositorio;
-        _clienteRepositorio = clienteRepositorio;
     }
     
-    public async Task<Cliente> EfetuaLogin(string email, string password)
+    public async Task<Usuario> EfetuaLogin(string email, string password)
     {
-        var user = await _usuarioRepositorio.GetUsuarioAsync(email, password);
-        return await _clienteRepositorio.GetClientByUser(user.Id);
+        return await _usuarioRepositorio.GetUsuarioAsync(email, password);
     }
 
-    public async Task<Cliente> RegisterUser(string email, string name, string password)
+    public async Task<Usuario> RegisterUser(string email, string name, string password)
     {
         var usuario = new Usuario
         {
-            Id = new Guid().ToString(),
             Email = email,
             Password = password,
-            Name = name
+            Name = name,
+            Saldo = 0
         };
-        var cliente = new Cliente
-        {
-            Id = new Guid().ToString(),
-            Saldo = 0,
-            UsuarioId= usuario.Id
-        };
-        usuario.ClienteId = cliente.Id;
-        cliente.UsuarioId = usuario.Id;
-        
         await _usuarioRepositorio.CadastraUsuarioAsync(usuario);
-        await _clienteRepositorio.CadastraClienteAsync(cliente);
-        return cliente;
+        return await _usuarioRepositorio.GetUsuarioAsync(email, password);
     }
 }

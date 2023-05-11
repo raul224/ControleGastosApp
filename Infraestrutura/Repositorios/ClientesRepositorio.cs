@@ -8,7 +8,6 @@ namespace Infraestrutura.Repositorios;
 public class ClientesRepositorio : IClientesRepositorio
 {
     private readonly IMongoCollection<Cliente> clienteCollection;
-    private readonly IMongoCollection<Lancamento> lancamentoCollection;
 
     public ClientesRepositorio(IOptions<DatabaseSettings> databaseSettings)
     {
@@ -19,28 +18,7 @@ public class ClientesRepositorio : IClientesRepositorio
             databaseSettings.Value.DataBaseName);
 
         clienteCollection = mongoDatabase.GetCollection<Cliente>("Clientes");
-        lancamentoCollection = mongoDatabase.GetCollection<Lancamento>("Lancamentos");
-    }
-    
-    public async Task<IEnumerable<Lancamento>> GetLancamentosAsync(string clientId)
-    {
-        var cursor =  await lancamentoCollection
-        .FindAsync(x => x.ClientId.Equals(clientId) && 
-                    x.DataLancamento < DateTime.Now.AddDays(90));
-        return await cursor.ToListAsync();
-    }
-
-    public async Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim)
-    {
-        var cursor = await lancamentoCollection.FindAsync(
-            x => x.DataLancamento >= dataIncio && 
-                 x.DataLancamento <= dataFim);
-        return await cursor.ToListAsync();
-    }
-
-    public async Task cadastraLancamentoAsync(Lancamento lancamento)
-    {
-        await lancamentoCollection.InsertOneAsync(lancamento);
+        
     }
 
     public async Task<Cliente> GetClienteAsync(string clientId)

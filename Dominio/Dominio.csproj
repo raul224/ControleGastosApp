@@ -7,11 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Dto\Response\" />
     <Folder Include="Entidades\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.19.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entidades\Cliente.cs" />
+    <Compile Remove="Services\ClientesService.cs" />
+    <Compile Remove="Services\IClientesService.cs" />
+    <Compile Remove="IRepositorios\IClientesRepositorio.cs" />
+    <Compile Remove="Dto\Response\UsuarioClienteDto.cs" />
   </ItemGroup>
 
 </Project>

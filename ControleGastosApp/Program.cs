@@ -1,5 +1,6 @@
 using Dominio.IRepositorios;
 using Dominio.Services;
+using Dominio.Services.Interfaces;
 using Infraestrutura;
 using Infraestrutura.Repositorios;
 using Microsoft.Extensions.Options;
@@ -15,11 +16,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IClientesService, ClientesService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IGastosService, GastosService>();
 
-builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<IGastosRepositorio, GastosRepositorio>();
 
 var app = builder.Build();
 

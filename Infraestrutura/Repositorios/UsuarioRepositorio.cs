@@ -7,7 +7,7 @@ namespace Infraestrutura.Repositorios;
 
 public class UsuarioRepositorio : IUsuarioRepositorio
 {
-    private readonly IMongoCollection<Usuario> usuarioCollection; 
+    private readonly IMongoCollection<Usuario> usuarioCollection;
     
     public UsuarioRepositorio(IOptions<DatabaseSettings> databaseSettings)
     {
