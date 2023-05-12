@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "jpZyzRkYxxWC2CX8wU3pdKPFpQtih4U8ZddHshLBzS3hxYfMJeEFwvgpNmdMrYUk6/3zuuEaTe9H91BlUU9j/A==",
+  "dgSpecHash": "zv1+JkMsWj8yJAvXePo4Tcri0dsOJZX+e4RiMiFqXVh5Ghe5gEyliG1a22LNtrAf8gGKGZRYm9ZN19HgSo2H/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\raulp\\Dev\\ControleGastosApp\\Infraestrutura\\Infraestrutura.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\raulp\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\raulp\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\raulp\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "C:\\Users\\raulp\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
+    "C:\\Users\\raulp\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\raulp\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0-preview.3.23174.8\\microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.3.23174.8.nupkg.sha512",
     "C:\\Users\\raulp\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\raulp\\.nuget\\packages\\microsoft.extensions.options\\8.0.0-preview.3.23174.8\\microsoft.extensions.options.8.0.0-preview.3.23174.8.nupkg.sha512",

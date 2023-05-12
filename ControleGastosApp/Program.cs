@@ -33,6 +33,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(options => options
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .WithOrigins("localhost://4200")
+    .AllowCredentials());
+
 app.UseAuthorization();
 
 app.MapControllers();

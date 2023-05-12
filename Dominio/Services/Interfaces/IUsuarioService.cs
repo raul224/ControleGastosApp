@@ -1,9 +1,10 @@
-﻿using Dominio.Entidades;
+﻿using Dominio.Dto.Response;
+using Dominio.Entidades;
 
 namespace Dominio.Services.Interfaces;
 
 public interface IUsuarioService
 {
-    Task<Usuario> EfetuaLogin(string email, string password);
-    Task<Usuario> RegisterUser(string email, string name, string password);
+    Task<UsuarioResponse> EfetuaLogin(string email, string password);
+    Task<UsuarioResponse> RegisterUser(string email, string name, string password);
 }

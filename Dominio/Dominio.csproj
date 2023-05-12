@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\Response\" />
     <Folder Include="Entidades\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="MongoDB.Bson" Version="2.19.1" />
   </ItemGroup>
 
