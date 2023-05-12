@@ -3,7 +3,6 @@ using Dominio.Services;
 using Dominio.Services.Interfaces;
 using Infraestrutura;
 using Infraestrutura.Repositorios;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +20,8 @@ builder.Services.AddScoped<IGastosService, GastosService>();
 
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IGastosRepositorio, GastosRepositorio>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 

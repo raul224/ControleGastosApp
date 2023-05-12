@@ -11,15 +11,19 @@ public class UsuarioService : IUsuarioService
     private readonly IUsuarioRepositorio _usuarioRepositorio;
     private readonly IMapper _mapper;
     
-    public UsuarioService(IUsuarioRepositorio usuarioRepositorio)
+    public UsuarioService(
+        IUsuarioRepositorio usuarioRepositorio,
+        IMapper mapper)
     {
         _usuarioRepositorio = usuarioRepositorio;
+        _mapper = mapper;
     }
     
     public async Task<UsuarioResponse> EfetuaLogin(string email, string password)
     {
         var usuario = await _usuarioRepositorio.GetUsuarioAsync(email, password);
-        return _mapper.Map<Usuario, UsuarioResponse>(usuario);
+        var ret = _mapper.Map<Usuario, UsuarioResponse>(usuario);
+        return ret;
     }
 
     public async Task<UsuarioResponse> RegisterUser(string email, string name, string password)

@@ -54,3 +54,5 @@ C:\Users\raulp\Dev\ControleGastosApp\ControleGastosApp\bin\Debug\net6.0\ZstdShar
 C:\Users\raulp\Dev\ControleGastosApp\ControleGastosApp\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
 C:\Users\raulp\Dev\ControleGastosApp\ControleGastosApp\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\raulp\Dev\ControleGastosApp\ControleGastosApp\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:\Users\raulp\Dev\ControleGastosApp\ControleGastosApp\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\raulp\Dev\ControleGastosApp\ControleGastosApp\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
