@@ -2,6 +2,7 @@
 
 public class DataRangeModel
 {
-    public DateTime dataInicial { get; set; }
-    public DateTime dataFinal { get; set; }
+    public string UsuarioId { get; set; }
+    public DateTime DataInicial { get; set; }
+    public DateTime DataFinal { get; set; }
 }

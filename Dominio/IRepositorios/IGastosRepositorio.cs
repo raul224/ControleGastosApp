@@ -6,6 +6,6 @@ public interface IGastosRepositorio
 {
     Task<IEnumerable<Lancamento>> GetLancamentosAsync(string clientId);
 
-    Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim);
+    Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim, string usuarioId);
     Task cadastraLancamentoAsync(Lancamento lancamento);
 }

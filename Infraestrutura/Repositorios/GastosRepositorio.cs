@@ -29,11 +29,11 @@ public class GastosRepositorio : IGastosRepositorio
         return await cursor.ToListAsync();
     }
 
-    public async Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim)
+    public async Task<IEnumerable<Lancamento>> GetLancamentosComFiltroAsync(DateTime dataIncio, DateTime dataFim, string usuarioId)
     {
         var cursor = await lancamentoCollection.FindAsync(
             x => x.DataLancamento >= dataIncio && 
-                 x.DataLancamento <= dataFim);
+                 x.DataLancamento <= dataFim && x.UsuarioId.Equals(usuarioId));
         return await cursor.ToListAsync();
     }
 

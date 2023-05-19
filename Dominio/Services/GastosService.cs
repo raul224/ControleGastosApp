@@ -1,4 +1,5 @@
-﻿using Dominio.Entidades;
+﻿using System.Globalization;
+using Dominio.Entidades;
 using Dominio.IRepositorios;
 using Dominio.Services.Interfaces;
 
@@ -23,8 +24,8 @@ public class GastosService : IGastosService
         await _gastosRepositorio.cadastraLancamentoAsync(lancamento);
     }
     
-    public Task<IEnumerable<Lancamento>> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim)
+    public Task<IEnumerable<Lancamento>> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim, string usuarioId)
     {
-        return _gastosRepositorio.GetLancamentosComFiltroAsync(dataInicio, dataFim);
+        return _gastosRepositorio.GetLancamentosComFiltroAsync(dataInicio, dataFim, usuarioId);
     }
 }

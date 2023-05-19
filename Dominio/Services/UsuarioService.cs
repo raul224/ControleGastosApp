@@ -22,8 +22,7 @@ public class UsuarioService : IUsuarioService
     public async Task<UsuarioResponse> EfetuaLogin(string email, string password)
     {
         var usuario = await _usuarioRepositorio.GetUsuarioAsync(email, password);
-        var ret = _mapper.Map<Usuario, UsuarioResponse>(usuario);
-        return ret;
+        return _mapper.Map<Usuario, UsuarioResponse>(usuario);;
     }
 
     public async Task<UsuarioResponse> RegisterUser(string email, string name, string password)

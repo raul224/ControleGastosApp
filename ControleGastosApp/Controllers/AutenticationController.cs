@@ -21,8 +21,7 @@ public class AutenticationController : ControllerBase
         var usuarioAutorizado = await _usuarioService.EfetuaLogin(
             loginModel.email, 
             loginModel.password);
-        return Ok(usuarioAutorizado);
-            
+        return Ok(usuarioAutorizado);    
     }
 
     [HttpPost]
