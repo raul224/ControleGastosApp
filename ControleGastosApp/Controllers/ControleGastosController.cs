@@ -29,7 +29,7 @@ namespace ControleGastosApp.Controllers
         
         [HttpPost]
         [Route("Lancamentos")]
-        public async Task<IActionResult> CadastraLancamento([FromBody] Lancamento lancamento)
+        public async Task<IActionResult> CadastraLancamento([FromBody] LancamentoCadastroModel lancamento)
         {
             await _gastosService.CadastraLancamento(lancamento);
             return Ok();

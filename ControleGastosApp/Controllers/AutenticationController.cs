@@ -28,11 +28,7 @@ public class AutenticationController : ControllerBase
     [Route("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
     {
-        var newUserClient = await _usuarioService.RegisterUser(
-            registerModel.email, 
-            registerModel.name, 
-            registerModel.password);
+        var newUserClient = await _usuarioService.RegisterUser(registerModel);
         return Ok(newUserClient);
-            
     }
 }

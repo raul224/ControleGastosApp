@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dominio.Dto;
 using Dominio.Dto.Response;
 using Dominio.Entidades;
 
@@ -12,5 +13,7 @@ public class UsuarioProfile : Profile
             .ForMember(ur => ur.Id,
                 opt =>opt
                     .MapFrom(u => u.Id.ToString()));
+
+        CreateMap<RegisterModel, Usuario>();
     }
 }

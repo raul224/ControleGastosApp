@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dominio.Dto;
 using Dominio.Dto.Response;
 using Dominio.Entidades;
 using Dominio.IRepositorios;
@@ -25,17 +26,11 @@ public class UsuarioService : IUsuarioService
         return _mapper.Map<Usuario, UsuarioResponse>(usuario);;
     }
 
-    public async Task<UsuarioResponse> RegisterUser(string email, string name, string password)
+    public async Task<UsuarioResponse> RegisterUser(RegisterModel registerModel)
     {
-        var usuario = new Usuario
-        {
-            Email = email,
-            Password = password,
-            Name = name,
-            Saldo = 0
-        };
+        var usuario = _mapper.Map<RegisterModel, Usuario>(registerModel);
         await _usuarioRepositorio.CadastraUsuarioAsync(usuario);
-        var userDb = await _usuarioRepositorio.GetUsuarioAsync(email, password);
+        var userDb = await _usuarioRepositorio.GetUsuarioAsync(usuario.Email, usuario.Password);
         return _mapper.Map<Usuario, UsuarioResponse>(usuario);
     }
 }
