@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using AutoMapper;
 using Dominio.Dto;
 using Dominio.Entidades;
 using Dominio.IRepositorios;
@@ -9,10 +9,12 @@ namespace Dominio.Services;
 public class GastosService : IGastosService
 {
     private readonly IGastosRepositorio _gastosRepositorio;
+    private readonly IMapper _mapper;
     
-    public GastosService(IGastosRepositorio gastosRepositorio)
+    public GastosService(IGastosRepositorio gastosRepositorio, IMapper mapper)
     {
-        _gastosRepositorio = gastosRepositorio;
+        _gastosRepositorio = gastosRepositorio ?? throw new ArgumentNullException(nameof(gastosRepositorio));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
     
     public async Task<IEnumerable<Lancamento>> GetLancamentos(string id)
@@ -22,12 +24,7 @@ public class GastosService : IGastosService
     
     public async Task CadastraLancamento(LancamentoCadastroModel lancamentoRequest)
     {
-        var lancamento = new Lancamento
-        {
-            DataLancamento = lancamentoRequest.DataLancamento,
-            DescricaoLancamento = lancamentoRequest.DescricaoLancamento,
-            UsuarioId = lancamentoRequest.UsuarioId
-        };
+        var lancamento = _mapper.Map<LancamentoCadastroModel, Lancamento>(lancamentoRequest);
         await _gastosRepositorio.cadastraLancamentoAsync(lancamento);
     }
     
