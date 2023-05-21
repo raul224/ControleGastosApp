@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dominio.Dto;
+using Dominio.Dto.Response;
 using Dominio.Entidades;
 using Dominio.IRepositorios;
 using Dominio.Services.Interfaces;
@@ -17,9 +18,10 @@ public class GastosService : IGastosService
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
     
-    public async Task<IEnumerable<Lancamento>> GetLancamentos(string id)
+    public async Task<IEnumerable<LancamentoResponse>> GetLancamentos(string id)
     {
-        return await _gastosRepositorio.GetLancamentosAsync(id);
+        var returnList = await _gastosRepositorio.GetLancamentosAsync(id);
+        return _mapper.Map<IEnumerable<Lancamento>, IEnumerable<LancamentoResponse>>(returnList);
     }
     
     public async Task CadastraLancamento(LancamentoCadastroModel lancamentoRequest)
@@ -28,8 +30,13 @@ public class GastosService : IGastosService
         await _gastosRepositorio.cadastraLancamentoAsync(lancamento);
     }
     
-    public Task<IEnumerable<Lancamento>> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim, string usuarioId)
+    public async Task<IEnumerable<LancamentoResponse>> GetLancamentosComFiltro(
+        DateTime dataInicio, 
+        DateTime dataFim, 
+        string usuarioId)
     {
-        return _gastosRepositorio.GetLancamentosComFiltroAsync(dataInicio, dataFim, usuarioId);
+        var returnList = await _gastosRepositorio
+            .GetLancamentosComFiltroAsync(dataInicio, dataFim, usuarioId);
+        return _mapper.Map<IEnumerable<Lancamento>, IEnumerable<LancamentoResponse>>(returnList);
     }
 }

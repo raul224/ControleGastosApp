@@ -1,11 +1,12 @@
 ﻿using Dominio.Dto;
+using Dominio.Dto.Response;
 using Dominio.Entidades;
 
 namespace Dominio.Services.Interfaces;
 
 public interface IGastosService
 {
-    Task<IEnumerable<Lancamento>> GetLancamentos(string id);
+    Task<IEnumerable<LancamentoResponse>> GetLancamentos(string id);
     Task CadastraLancamento(LancamentoCadastroModel lancamento);
-    Task<IEnumerable<Lancamento>> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim, string usuarioId);
+    Task<IEnumerable<LancamentoResponse>> GetLancamentosComFiltro(DateTime dataInicio, DateTime dataFim, string usuarioId);
 }
