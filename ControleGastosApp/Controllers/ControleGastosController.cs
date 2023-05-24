@@ -2,7 +2,6 @@
 using System.Text;
 using CsvHelper;
 using Dominio.Dto;
-using Dominio.Entidades;
 using Dominio.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
