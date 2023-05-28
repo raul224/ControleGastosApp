@@ -1,6 +1,6 @@
 ﻿namespace Dominio.Dto;
 
-public class LancamentoCadastroModel
+public class FlowRegisterModel
 {
     public DateTime DataLancamento { get; set; }
     public string DescricaoLancamento { get; set; }

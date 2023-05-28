@@ -5,13 +5,13 @@ using Dominio.Entidades;
 
 namespace ControleGastosApp.MappingProfiles;
 
-public class LancamentoProfile : Profile
+public class FlowProfile : Profile
 {
-    public LancamentoProfile()
+    public FlowProfile()
     {
-        CreateMap<LancamentoCadastroModel, Lancamento>();
+        CreateMap<FlowRegisterModel, Flow>();
 
-        CreateMap<Lancamento, LancamentoResponse>()
+        CreateMap<Flow, FlowResponse>()
             .ForMember(lr => lr.Id,
                 opt
                     => opt.MapFrom(l => l.Id.ToString()));

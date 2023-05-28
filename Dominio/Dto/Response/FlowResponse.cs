@@ -1,6 +1,6 @@
 ﻿namespace Dominio.Dto.Response;
 
-public class LancamentoResponse
+public class FlowResponse
 {
     public string Id { get; set; }
     public DateTime DataLancamento { get; set; }

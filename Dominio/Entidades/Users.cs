@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace Dominio.Entidades;
 
-public class Usuario
+public class Users
 {
     [BsonId(IdGenerator = typeof(ObjectIdGenerator))]
     [BsonRepresentation(BsonType.ObjectId)]

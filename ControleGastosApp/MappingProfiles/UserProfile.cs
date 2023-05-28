@@ -5,15 +5,15 @@ using Dominio.Entidades;
 
 namespace ControleGastosApp.MappingProfiles;
 
-public class UsuarioProfile : Profile
+public class UserProfile : Profile
 {
-    public UsuarioProfile()
+    public UserProfile()
     {
-        CreateMap<Usuario, UsuarioResponse>()
+        CreateMap<Users, UserResponse>()
             .ForMember(ur => ur.Id,
                 opt =>opt
                     .MapFrom(u => u.Id.ToString()));
 
-        CreateMap<RegisterModel, Usuario>();
+        CreateMap<RegisterModel, Users>();
     }
 }

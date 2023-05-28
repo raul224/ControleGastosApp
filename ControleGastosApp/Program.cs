@@ -15,11 +15,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-builder.Services.AddScoped<IGastosService, GastosService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IBalanceService, BalanceService>();
 
-builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-builder.Services.AddScoped<IGastosRepositorio, GastosRepositorio>();
+builder.Services.AddScoped<IUserRepositorio, UsersRepository>();
+builder.Services.AddScoped<IBalanceRepositorio, BalanceRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 

@@ -8,27 +8,27 @@ namespace ControleGastosApp.Controllers;
 [Route("[Controller]")]
 public class AutenticationController : ControllerBase
 {
-    public readonly IUsuarioService _usuarioService;
+    public readonly IUserService _userService;
 
-    public AutenticationController(IUsuarioService usuarioService)
+    public AutenticationController(IUserService userService)
     {
-        _usuarioService = usuarioService;
+        _userService = userService;
     }
     
     [HttpPost]
     public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
     {
-        var usuarioAutorizado = await _usuarioService.EfetuaLogin(
+        var userAuntenticated = await _userService.Login(
             loginModel.email, 
             loginModel.password);
-        return Ok(usuarioAutorizado);    
+        return Ok(userAuntenticated);    
     }
 
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
     {
-        var newUserClient = await _usuarioService.RegisterUser(registerModel);
+        var newUserClient = await _userService.RegisterUser(registerModel);
         return Ok(newUserClient);
     }
 }
