@@ -20,9 +20,9 @@ namespace ControleGastosApp.Controllers
 
         [HttpGet]
         [Route("Flows")]
-        public IActionResult GetFlow([FromQuery]string usuarioId)
+        public IActionResult GetFlow([FromQuery]string userId)
         {
-            var flows = _balanceService.GetFlows(usuarioId);
+            var flows = _balanceService.GetFlows(userId);
             return Ok(flows);
         }
         

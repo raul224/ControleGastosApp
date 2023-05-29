@@ -24,8 +24,7 @@ public class AutenticationController : ControllerBase
         return Ok(userAuntenticated);    
     }
 
-    [HttpPost]
-    [Route("register")]
+    [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
     {
         var newUserClient = await _userService.RegisterUser(registerModel);
