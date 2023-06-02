@@ -2,7 +2,7 @@
 
 namespace Dominio.IRepositorios;
 
-public interface IBalanceRepositorio
+public interface IBalanceRepository
 {
     Task<IEnumerable<Flow>> GetFlowsAsync(string clientId);
 

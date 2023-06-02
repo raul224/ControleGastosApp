@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Infraestrutura.Repositorios;
 
-public class BalanceRepository : IBalanceRepositorio
+public class BalanceRepository : IBalanceRepository
 {
     
     private readonly IMongoCollection<Flow> flowCollection;

@@ -2,7 +2,7 @@
 
 namespace Dominio.IRepositorios;
 
-public interface IUserRepositorio
+public interface IUserRepository
 {
     Task<Users> GetUserAsync(string email, string password);
     Task AddUserAsync(Users users);

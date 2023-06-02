@@ -9,25 +9,25 @@ namespace Dominio.Services;
 
 public class BalanceService : IBalanceService
 {
-    private readonly IBalanceRepositorio _balanceRepositorio;
+    private readonly IBalanceRepository _balanceRepository;
     private readonly IMapper _mapper;
     
-    public BalanceService(IBalanceRepositorio balanceRepositorio, IMapper mapper)
+    public BalanceService(IBalanceRepository balanceRepository, IMapper mapper)
     {
-        _balanceRepositorio = balanceRepositorio ?? throw new ArgumentNullException(nameof(balanceRepositorio));
+        _balanceRepository = balanceRepository ?? throw new ArgumentNullException(nameof(balanceRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
     
     public async Task<IEnumerable<FlowResponse>> GetFlows(string id)
     {
-        var returnList = await _balanceRepositorio.GetFlowsAsync(id);
+        var returnList = await _balanceRepository.GetFlowsAsync(id);
         return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowResponse>>(returnList);
     }
     
     public async Task AddFlow(FlowRegisterModel flowRequest)
     {
         var flow = _mapper.Map<FlowRegisterModel, Flow>(flowRequest);
-        await _balanceRepositorio.AddFlowAsync(flow);
+        await _balanceRepository.AddFlowAsync(flow);
     }
     
     public async Task<IEnumerable<FlowResponse>> GetPreviewFlow(
@@ -35,7 +35,7 @@ public class BalanceService : IBalanceService
         DateTime finalDate, 
         string userId)
     {
-        var returnList = await _balanceRepositorio
+        var returnList = await _balanceRepository
             .GetFlowsPreviewAsync(initialDate, finalDate, userId);
         return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowResponse>>(returnList);
     }

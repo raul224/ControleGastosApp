@@ -5,9 +5,9 @@ using Microsoft.Extensions.Options;
 
 namespace Infraestrutura.Repositorios;
 
-public class UsersRepository : IUserRepositorio
+public class UsersRepository : IUserRepository
 {
-    private readonly IMongoCollection<Users> usersCollection;
+    private readonly IMongoCollection<Users> _usersCollection;
     
     public UsersRepository(IOptions<DatabaseSettings> databaseSettings)
     {
@@ -17,18 +17,18 @@ public class UsersRepository : IUserRepositorio
         var mongoDatabase = mongoClient.GetDatabase(
             databaseSettings.Value.DataBaseName);
 
-        usersCollection = mongoDatabase.GetCollection<Users>("Users");
+        _usersCollection = mongoDatabase.GetCollection<Users>("Users");
     }
     
     public async Task<Users> GetUserAsync(string email, string password)
     {
-        return await usersCollection.FindSync(x => 
+        return await _usersCollection.FindSync(x => 
             x.Email.Equals(email.ToLower()) && 
             x.Password.Equals(password.ToLower())).FirstOrDefaultAsync();
     }
 
     public async Task AddUserAsync(Users users)
     {
-        await usersCollection.InsertOneAsync(users);
+        await _usersCollection.InsertOneAsync(users);
     }
 }

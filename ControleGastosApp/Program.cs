@@ -18,8 +18,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBalanceService, BalanceService>();
 
-builder.Services.AddScoped<IUserRepositorio, UsersRepository>();
-builder.Services.AddScoped<IBalanceRepositorio, BalanceRepository>();
+builder.Services.AddScoped<IUserRepository, UsersRepository>();
+builder.Services.AddScoped<IBalanceRepository, BalanceRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
