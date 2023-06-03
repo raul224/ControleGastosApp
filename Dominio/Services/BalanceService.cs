@@ -21,7 +21,9 @@ public class BalanceService : IBalanceService
     public async Task<IEnumerable<FlowResponse>> GetFlows(string id)
     {
         var returnList = await _balanceRepository.GetFlowsAsync(id);
-        return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowResponse>>(returnList);
+        if (returnList.Any())
+            return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowResponse>>(returnList);
+        return new List<FlowResponse>();
     }
     
     public async Task AddFlow(FlowRegisterModel flowRequest)

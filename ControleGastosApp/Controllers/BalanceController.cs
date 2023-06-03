@@ -20,37 +20,58 @@ namespace ControleGastosApp.Controllers
 
         [HttpGet]
         [Route("Flows")]
-        public IActionResult GetFlow([FromQuery]string userId)
+        public async Task<IActionResult> GetFlow([FromQuery]string userId)
         {
-            var flows = _balanceService.GetFlows(userId);
-            return Ok(flows);
+            try
+            {
+                var flows = await _balanceService.GetFlows(userId);
+                return Ok(flows);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
         
         [HttpPost]
         [Route("Flows")]
         public async Task<IActionResult> AddFlow([FromBody] FlowRegisterModel flow)
         {
-            await _balanceService.AddFlow(flow);
-            return Ok();
+            try
+            {
+                await _balanceService.AddFlow(flow);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
         
         [HttpPost]
         [Route("Flows/Preview")]
         public IActionResult GetPreviewFlows90Days([FromBody]DataRangeModel dataRange)
         {
-            var flows = _balanceService.GetPreviewFlow(
-                dataRange.InitialDate,
-                dataRange.FinalDate,
-                dataRange.UserId);
-            using (var writer = new StreamWriter("lancamentos.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.CurrentCulture))
+            try
             {
-                csv.WriteRecord(flows);
+                var flows = _balanceService.GetPreviewFlow(
+                    dataRange.InitialDate,
+                    dataRange.FinalDate,
+                    dataRange.UserId);
+                using (var writer = new StreamWriter("lancamentos.csv"))
+                using (var csv = new CsvWriter(writer, CultureInfo.CurrentCulture))
+                {
+                    csv.WriteRecord(flows);
+                }
+            
+                var bytes = Encoding.UTF8.GetBytes("lancamentos.csv");
+            
+                return File(bytes, "text/csv", "lancamentos.csv");
             }
-            
-            var bytes = Encoding.UTF8.GetBytes("lancamentos.csv");
-            
-            return File(bytes, "text/csv", "lancamentos.csv");
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

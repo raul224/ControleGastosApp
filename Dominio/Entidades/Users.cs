@@ -12,5 +12,5 @@ public class Users
     public string Email { get; set; }
     public string Password { get; set; }
     public string Name { get; set; }
-    public double Saldo { get; set; }
+    public double Balance { get; set; }
 }

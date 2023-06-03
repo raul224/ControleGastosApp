@@ -3,7 +3,7 @@
 public class FlowResponse
 {
     public string Id { get; set; }
-    public DateTime DataLancamento { get; set; }
-    public string DescricaoLancamento { get; set; }
-    public double ValorLancamento { get; set; }
+    public DateTime Date { get; set; }
+    public string Description { get; set; }
+    public double Value { get; set; }
 }

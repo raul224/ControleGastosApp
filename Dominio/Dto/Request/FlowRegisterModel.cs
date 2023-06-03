@@ -2,8 +2,8 @@
 
 public class FlowRegisterModel
 {
-    public DateTime DataLancamento { get; set; }
-    public string DescricaoLancamento { get; set; }
-    public double ValorLancamento { get; set; }
-    public string UsuarioId { get; set; }
+    public DateTime Date { get; set; }
+    public string Description { get; set; }
+    public double Value { get; set; }
+    public string UserId { get; set; }
 }

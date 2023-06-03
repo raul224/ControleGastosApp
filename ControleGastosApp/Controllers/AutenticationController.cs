@@ -18,16 +18,30 @@ public class AutenticationController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
     {
-        var userAuntenticated = await _userService.Login(
-            loginModel.email, 
-            loginModel.password);
-        return Ok(userAuntenticated);    
+        try
+        {
+            var userAuntenticated = await _userService.Login(
+                loginModel.email, 
+                loginModel.password);
+            return Ok(userAuntenticated);
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }    
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
     {
-        var newUserClient = await _userService.RegisterUser(registerModel);
-        return Ok(newUserClient);
+        try
+        {
+            var newUserClient = await _userService.RegisterUser(registerModel);
+            return Ok(newUserClient);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
