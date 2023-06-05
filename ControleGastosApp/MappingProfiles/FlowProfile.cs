@@ -15,5 +15,7 @@ public class FlowProfile : Profile
             .ForMember(lr => lr.Id,
                 opt
                     => opt.MapFrom(l => l.Id.ToString()));
+
+        CreateMap<Flow, FlowCsvModel>();
     }
 }

@@ -32,13 +32,13 @@ public class BalanceService : IBalanceService
         await _balanceRepository.AddFlowAsync(flow);
     }
     
-    public async Task<IEnumerable<FlowResponse>> GetPreviewFlow(
+    public async Task<IEnumerable<FlowCsvModel>> GetPreviewFlow(
         DateTime initialDate, 
         DateTime finalDate, 
         string userId)
     {
         var returnList = await _balanceRepository
             .GetFlowsPreviewAsync(initialDate, finalDate, userId);
-        return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowResponse>>(returnList);
+        return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowCsvModel>>(returnList);
     }
 }

@@ -2,6 +2,7 @@
 using System.Text;
 using CsvHelper;
 using Dominio.Dto;
+using Dominio.Dto.Response;
 using Dominio.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,21 +51,29 @@ namespace ControleGastosApp.Controllers
         
         [HttpPost]
         [Route("Flows/Preview")]
-        public IActionResult GetPreviewFlows90Days([FromBody]DataRangeModel dataRange)
+        public async Task<IActionResult> GetPreviewFlows90Days([FromBody]DataRangeModel dataRange)
         {
             try
             {
-                var flows = _balanceService.GetPreviewFlow(
+                var flows = await _balanceService.GetPreviewFlow(
                     dataRange.InitialDate,
                     dataRange.FinalDate,
                     dataRange.UserId);
-                using (var writer = new StreamWriter("lancamentos.csv"))
+
+                var builder = new StringBuilder();
+                using (var writer = new StringWriter(builder))
                 using (var csv = new CsvWriter(writer, CultureInfo.CurrentCulture))
                 {
-                    csv.WriteRecord(flows);
+                    csv.WriteHeader<FlowCsvModel>();
+                    csv.NextRecord();
+
+                    foreach (var flow in flows)
+                    {
+                        csv.WriteRecord(flow);
+                    }
                 }
-            
-                var bytes = Encoding.UTF8.GetBytes("lancamentos.csv");
+                
+                var bytes = Encoding.UTF8.GetBytes(builder.ToString());
             
                 return File(bytes, "text/csv", "lancamentos.csv");
             }

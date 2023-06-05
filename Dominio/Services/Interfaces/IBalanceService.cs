@@ -8,5 +8,5 @@ public interface IBalanceService
 {
     Task<IEnumerable<FlowResponse>> GetFlows(string id);
     Task AddFlow(FlowRegisterModel flow);
-    Task<IEnumerable<FlowResponse>> GetPreviewFlow(DateTime dataInicio, DateTime dataFim, string usuarioId);
+    Task<IEnumerable<FlowCsvModel>> GetPreviewFlow(DateTime dataInicio, DateTime dataFim, string usuarioId);
 }

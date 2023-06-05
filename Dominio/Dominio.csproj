@@ -21,6 +21,7 @@
     <Compile Remove="Services\IClientesService.cs" />
     <Compile Remove="IRepositorios\IClientesRepositorio.cs" />
     <Compile Remove="Dto\Response\UsuarioClienteDto.cs" />
+    <Compile Remove="Dto\Request\FlowPreviewModel.cs" />
   </ItemGroup>
 
 </Project>
