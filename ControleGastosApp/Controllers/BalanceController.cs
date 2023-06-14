@@ -82,6 +82,20 @@ namespace ControleGastosApp.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete]
+        [Route("Flows/Delete")]
+        public async Task<IActionResult> DeleteFlow([FromQuery] string id)
+        {
+            try
+            {
+                await _balanceService.DeleteFlow(id);
+                return Ok();
+            } catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
 

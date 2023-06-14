@@ -18,28 +18,31 @@
   <ItemGroup>
     <Compile Remove="Services\**" />
     <Compile Remove="Controllers\ClientesController.cs" />
+    <Compile Remove="Infrastructure\**" />
+    <Compile Remove="Validations\**" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="Validations\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Services\**" />
+    <None Remove="Infrastructure\**" />
+    <None Remove="Validations\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Services\**" />
+    <Content Remove="Infrastructure\**" />
+    <Content Remove="Validations\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
     <ProjectReference Include="..\Infraestrutura\Infraestrutura.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-    <Folder Include="Validations\" />
   </ItemGroup>
 
 </Project>
