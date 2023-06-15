@@ -8,4 +8,6 @@ public interface IBalanceRepository
 
     Task<IEnumerable<Flow>> GetFlowsPreviewAsync(DateTime initialDate, DateTime finalDate, string userId);
     Task AddFlowAsync(Flow flow);
+
+    Task DeleteFlowAsync(string id);
 }

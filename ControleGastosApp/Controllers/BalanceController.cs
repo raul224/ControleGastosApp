@@ -19,6 +19,7 @@ namespace ControleGastosApp.Controllers
             _balanceService = balanceService;
         }
 
+    
         [HttpGet]
         [Route("Flows")]
         public async Task<IActionResult> GetFlow([FromQuery]string userId)

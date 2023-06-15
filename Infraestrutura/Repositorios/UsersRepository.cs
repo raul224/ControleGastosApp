@@ -2,6 +2,8 @@
 using Dominio.IRepositorios;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
+using Dominio.Enums;
 
 namespace Infraestrutura.Repositorios;
 
@@ -30,5 +32,20 @@ public class UsersRepository : IUserRepository
     public async Task AddUserAsync(Users users)
     {
         await _usersCollection.InsertOneAsync(users);
+    }
+
+    public async Task UpdateUserAsync(FlowType flowType, string userId, double value)
+    {
+        var user = await _usersCollection
+            .Find(x => x.Id.Equals(ObjectId.Parse(userId)))
+            .FirstOrDefaultAsync();
+
+        if (flowType == FlowType.Credit){
+            user.Balance += value;
+        }else {
+            user.Balance -= value;
+        }
+
+        await _usersCollection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(userId)), user);
     }
 }

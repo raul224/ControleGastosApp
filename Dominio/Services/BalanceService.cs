@@ -10,11 +10,16 @@ namespace Dominio.Services;
 public class BalanceService : IBalanceService
 {
     private readonly IBalanceRepository _balanceRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
     
-    public BalanceService(IBalanceRepository balanceRepository, IMapper mapper)
+    public BalanceService(
+        IBalanceRepository balanceRepository,
+        IUserRepository userRepository,
+        IMapper mapper)
     {
         _balanceRepository = balanceRepository ?? throw new ArgumentNullException(nameof(balanceRepository));
+        _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
     
@@ -30,6 +35,7 @@ public class BalanceService : IBalanceService
     {
         var flow = _mapper.Map<FlowRegisterModel, Flow>(flowRequest);
         await _balanceRepository.AddFlowAsync(flow);
+        await _userRepository.UpdateUserAsync(flowRequest.flowType, flowRequest.UserId, flowRequest.Value);
     }
     
     public async Task<IEnumerable<FlowCsvModel>> GetPreviewFlow(
@@ -40,5 +46,10 @@ public class BalanceService : IBalanceService
         var returnList = await _balanceRepository
             .GetFlowsPreviewAsync(initialDate, finalDate, userId);
         return _mapper.Map<IEnumerable<Flow>, IEnumerable<FlowCsvModel>>(returnList);
+    }
+
+    public async Task DeleteFlow(string id)
+    {
+        await _balanceRepository.DeleteFlowAsync(id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Dominio.Entidades;
 using Dominio.IRepositorios;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Infraestrutura.Repositorios;
@@ -43,5 +44,10 @@ public class BalanceRepository : IBalanceRepository
     public async Task AddFlowAsync(Flow flow)
     {
         await flowCollection.InsertOneAsync(flow);
+    }
+
+    public async Task DeleteFlowAsync(string id)
+    {
+        await flowCollection.FindOneAndDeleteAsync(x => x.Id.Equals(ObjectId.Parse(id)));
     }
 }

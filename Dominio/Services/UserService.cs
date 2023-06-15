@@ -31,6 +31,6 @@ public class UserService : IUserService
         var user = _mapper.Map<RegisterModel, Users>(registerModel);
         await _userRepository.AddUserAsync(user);
         var userDb = await _userRepository.GetUserAsync(user.Email, user.Password);
-        return _mapper.Map<Users, UserResponse>(user);
+        return _mapper.Map<Users, UserResponse>(userDb);
     }
 }
