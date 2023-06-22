@@ -50,4 +50,11 @@ public class BalanceRepository : IBalanceRepository
     {
         await flowCollection.FindOneAndDeleteAsync(x => x.Id.Equals(ObjectId.Parse(id)));
     }
+
+    public async Task<Flow> GetFlowById(string id)
+    {
+        return await flowCollection.FindSync(
+            x => x.Id.Equals(ObjectId.Parse(id)))
+            .FirstOrDefaultAsync();
+    }
 }

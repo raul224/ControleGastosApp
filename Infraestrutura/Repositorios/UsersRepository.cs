@@ -48,4 +48,12 @@ public class UsersRepository : IUserRepository
 
         await _usersCollection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(userId)), user);
     }
+
+    public async Task<Users> GetUserByIdAsync(string userId)
+    {
+        return await _usersCollection
+            .FindSync(x => 
+                x.Id.Equals(ObjectId.Parse(userId)))
+            .FirstOrDefaultAsync();
+    }
 }

@@ -33,4 +33,10 @@ public class UserService : IUserService
         var userDb = await _userRepository.GetUserAsync(user.Email, user.Password);
         return _mapper.Map<Users, UserResponse>(userDb);
     }
+
+    public async Task<UserResponse> GetUserById(string userId)
+    {
+        var user = await _userRepository.GetUserByIdAsync(userId);
+        return _mapper.Map<Users, UserResponse>(user);
+    }
 }

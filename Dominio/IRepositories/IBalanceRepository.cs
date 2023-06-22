@@ -10,4 +10,5 @@ public interface IBalanceRepository
     Task AddFlowAsync(Flow flow);
 
     Task DeleteFlowAsync(string id);
+    Task<Flow> GetFlowById(string id);
 }

@@ -6,4 +6,5 @@ public class FlowResponse
     public DateTime Date { get; set; }
     public string Description { get; set; }
     public double Value { get; set; }
+    public string FlowType { get; set; }
 }

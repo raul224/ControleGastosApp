@@ -8,4 +8,5 @@ public interface IUserService
 {
     Task<UserResponse> Login(string email, string password);
     Task<UserResponse> RegisterUser(RegisterModel registerModel);
+    Task<UserResponse> GetUserById(string userId);
 }

@@ -2,6 +2,7 @@
 using Dominio.Dto;
 using Dominio.Dto.Response;
 using Dominio.Entidades;
+using Dominio.Enums;
 using Dominio.IRepositorios;
 using Dominio.Services.Interfaces;
 
@@ -50,6 +51,18 @@ public class BalanceService : IBalanceService
 
     public async Task DeleteFlow(string id)
     {
+        var flow = await _balanceRepository.GetFlowById(id);
+
+        if (flow.FlowType.Equals("Credit"))
+        {
+            // subtrair
+            await _userRepository.UpdateUserAsync(FlowType.Debit, flow.UserId, flow.Value);
+        }
+        else
+        {
+            // somar
+            await _userRepository.UpdateUserAsync(FlowType.Credit, flow.UserId, flow.Value);
+        }
         await _balanceRepository.DeleteFlowAsync(id);
     }
 }

@@ -44,4 +44,18 @@ public class AutenticationController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet("updated")]
+    public async Task<IActionResult> GetUpdatedUser([FromQuery] string userId)
+    {
+        try
+        {
+            var updatedUser = await _userService.GetUserById(userId);
+            return Ok(updatedUser);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

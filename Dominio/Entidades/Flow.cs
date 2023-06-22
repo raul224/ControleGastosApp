@@ -13,5 +13,6 @@ namespace Dominio.Entidades
         public string Description { get; set; }
         public double Value { get; set; }
         public string UserId { get; set; }
+        public string FlowType { get; set; }
     }
 }
